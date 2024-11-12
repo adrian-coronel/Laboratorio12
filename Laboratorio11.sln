@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laboratorio11", "Laboratorio11\Laboratorio11.csproj", "{040074C4-CAC0-4140-BD40-48F5A3D0268E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{6965CE9D-371D-458F-8436-1EAAD795EB09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{F6793E1E-68C1-4417-82BC-D09A6273AFBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{040074C4-CAC0-4140-BD40-48F5A3D0268E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{040074C4-CAC0-4140-BD40-48F5A3D0268E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{040074C4-CAC0-4140-BD40-48F5A3D0268E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{040074C4-CAC0-4140-BD40-48F5A3D0268E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6965CE9D-371D-458F-8436-1EAAD795EB09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6965CE9D-371D-458F-8436-1EAAD795EB09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6965CE9D-371D-458F-8436-1EAAD795EB09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6965CE9D-371D-458F-8436-1EAAD795EB09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6793E1E-68C1-4417-82BC-D09A6273AFBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6793E1E-68C1-4417-82BC-D09A6273AFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6793E1E-68C1-4417-82BC-D09A6273AFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6793E1E-68C1-4417-82BC-D09A6273AFBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9EEFB6C-363C-40D6-B184-195D75AFCEED}
+	EndGlobalSection
+EndGlobal
