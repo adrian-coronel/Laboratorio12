@@ -18,5 +18,6 @@ namespace Domain.Models
 
         [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
+        public virtual List<Detail> Details { get; set; }
     }
 }

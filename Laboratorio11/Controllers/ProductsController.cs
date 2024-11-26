@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Data;
 using Domain.Models;
+using Domain.Models.payloads.request;
 
 namespace Laboratorio11.Controllers
 {
@@ -73,11 +74,35 @@ namespace Laboratorio11.Controllers
             return NoContent();
         }
 
+        [HttpPut]
+        public ActionResult<Product> UpdatePrice(ProductRequestV2 request)
+        {
+            if (request.ProductId == 0)
+                return BadRequest("Invalid ProductId");
+
+            var product = _context.Products.Find(request.ProductId);
+            if (product == null)
+                return NotFound("Product not found");
+
+            product.Price = request.Price;
+
+            _context.Update(product);
+            _context.SaveChanges();
+
+            return product;
+        }
+
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public ActionResult<Product> Save(Product product)
+        public ActionResult<Product> Save(ProductRequestV1 request)
         {
+            var product = new Product
+            {
+                Name = request.Name,
+                Price = request.Price,
+                Enabled = true
+            };
             _context.Products.Add(product);
             _context.SaveChanges();
 
@@ -95,6 +120,29 @@ namespace Laboratorio11.Controllers
             }
 
             product.Enabled = false;
+
+            _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteAll(List<int> productIds)
+        {
+            if (!productIds.Any()) return BadRequest();
+
+            var products = _context.Products
+                .Where(x => productIds.Contains(x.ProductId) && x.Enabled)
+                .ToList();
+
+
+            if (products.Any())
+            {
+                foreach (var product in products)
+                    product.Enabled = false;
+
+                _context.UpdateRange(products);
+            }
 
             _context.SaveChangesAsync();
 

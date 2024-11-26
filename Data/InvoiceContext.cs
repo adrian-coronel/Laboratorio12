@@ -27,6 +27,20 @@ namespace Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Customer>()
+                .HasMany(c => c.Invoices)
+                .WithOne(i => i.Customer)
+                .HasForeignKey(i => i.CustomerId) // ForeignKey está en Invoice
+                .OnDelete(DeleteBehavior.Cascade); // Ejemplo de configuración adicional
+
+            modelBuilder.Entity<Invoice>()
+                .HasMany(i => i.Details)
+                .WithOne(d => d.Invoice)
+                .HasForeignKey(d => d.InvoiceId);
+
+
+
             modelBuilder.Entity<Customer>().HasQueryFilter(x => x.Enabled);
         }
 

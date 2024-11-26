@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Data;
 using Domain.Models;
+using Domain.Models.payloads.request;
 
 namespace Laboratorio11.Controllers
 {
@@ -73,11 +74,61 @@ namespace Laboratorio11.Controllers
             return NoContent();
         }
 
+        [HttpPut]
+        public IActionResult UpdateDocumentNumber(CustomerRequestV2 request)
+        {
+            if (request.CustomerId == 0)
+                return BadRequest("Invalid CustomerId");
+
+            var customer = _context.Customers.Find(request.CustomerId);
+            if (customer == null)
+                return NotFound("Customer not found");
+
+            customer.DocumentNumber = request.DocumentNumber;
+
+            _context.Update(customer);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
+
         // POST: api/Customers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public ActionResult<Customer> Save(Customer customer)
+        public ActionResult<Customer> Save(CustomerRequestV1 request)
         {
+            var customer = new Customer
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                DocumentNumber = request.DocumentNumber
+            };
+
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+            return customer;
+        }
+
+        [HttpPost]
+        public ActionResult<Customer> SaveInvoices(CustomerRequestV3 request)
+        {
+
+            if (request.CustomerId == 0 || request.Invoices.Count == 0)
+                return BadRequest();
+
+            var customer = _context.Customers.Find(request.CustomerId);
+
+            customer.Invoices = request.Invoices
+                .Select(inv => new Invoice
+                {
+                    InvoiceNumber = inv.InvoiceNumber,
+                    Date = inv.Date,
+                    Total = inv.Total,
+                    Enabled = true,
+                }).ToList();
+
             _context.Customers.Add(customer);
             _context.SaveChanges();
 

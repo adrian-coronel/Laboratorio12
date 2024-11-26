@@ -4,17 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace Domain.Models.payloads.request
 {
-    public class Customer
+    public class CustomerRequestV1
     {
-        public int CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DocumentNumber { get; set; }
-        public bool Enabled { get; set; }
-
-        
-        public virtual List<Invoice> Invoices { get; set; }
     }
 }
